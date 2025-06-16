@@ -1,7 +1,6 @@
 import bencode from 'bencode';
 import fs from 'node:fs';
 import crypto from 'node:crypto';
-
 export const open=(filePath)=>{
     return bencode.decode(fs.readFileSync(filePath),'utf8')
 }

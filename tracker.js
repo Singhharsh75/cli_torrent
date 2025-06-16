@@ -2,8 +2,8 @@ import dgram from 'node:dgram';
 import url from 'node:url';
 import crypto from 'node:crypto';
 import buffer from 'node:buffer'
-import { genId } from './utils';
-import { infoHash, size } from './torrent-parser';
+import { genId } from './utils.js';
+import { infoHash, size } from './torrent-parser.js';
 
 export const getPeers=(torrent,callback)=>{
     const socket=dgram.createSocket('udp4');

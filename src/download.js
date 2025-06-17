@@ -9,6 +9,8 @@ export const exp=(torrent)=>{
 
 function download(peer){
     const socket=net.Socket();
+
+    
     socket.on('error',console.log);
     socket.connect(peer.port,peer.ip,()=>{
 

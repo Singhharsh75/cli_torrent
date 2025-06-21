@@ -114,8 +114,29 @@ export const buildPort=(payload)=>{
 
     buf.writeUInt32BE(3,0);
     buf.writeUInt8(9,4);
-
+s
     buf.writeUInt32BE(payload,5);
 
     return buf;
+}
+
+
+export const msgParse=(buf)=>{
+    let id=buf.length>4?buf.readUInt8(4):null;
+    let payload=buf.length>5?buf.slice(5):null;
+
+    if(id===6 || id===7 || id===8){
+        const res=payload.slice(8);
+        const payload={
+            index:payload.readUInt32BE(0),
+            begin:payload.readUInt32BE(4),
+        }
+        payload[id===7?'block':'length']=res;
+    }
+
+    return{
+        size:buf.readUInt32BE(0),
+        id:id,
+        payload:payload
+    }
 }
